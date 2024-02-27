@@ -9,11 +9,7 @@ interface Values {
 }
 
 const RegisterForm: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Values>({
+  const { register, handleSubmit } = useForm<Values>({
     defaultValues: {
       userName: "",
       email: "",
@@ -32,12 +28,10 @@ const RegisterForm: React.FC = () => {
         <div className="form-group">
           <label>Name</label>
           <input type="text" {...(register("userName"), { required: true })} />
-          {errors.userName && <span>This field is required</span>}
         </div>
         <div className="form-group">
           <label>Email</label>
           <input type="email" {...(register("email"), { required: true })} />
-          {errors.email && <span>This field is required</span>}
         </div>
         <div className="form-group">
           <label>Password</label>
@@ -46,12 +40,6 @@ const RegisterForm: React.FC = () => {
             {...(register("password"),
             { required: true, minLength: 6, maxLength: 12 })}
           />
-          {errors.password && errors.password.type === "required" && (
-            <span>This field is required</span>
-          )}
-          {errors.password && errors.password.type === "minLength" && (
-            <span>Password must have at least 6 characters</span>
-          )}
         </div>
         <button type="submit">Register</button>
       </form>
